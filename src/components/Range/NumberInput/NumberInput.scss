@@ -1,0 +1,23 @@
+.NumberInput {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 1px;
+    height: 20px;
+    margin-right: 20px;
+    align-content: center;
+    align-items: center;
+    font-size: 16px;
+
+    &__input {
+        width: fit-content;
+        max-width: 40px;
+        height: inherit;
+        text-align: center;
+        border: none;
+    }
+
+    &__unit {
+        width: 10px;
+        height: inherit;
+    }
+}

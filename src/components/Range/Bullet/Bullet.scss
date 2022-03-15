@@ -1,0 +1,26 @@
+@import '../Range.scss';
+
+.Bullet {
+    position: absolute;
+    top: -$bullet_radius;
+    left: -$bullet_radius;
+    width: 2 * $bullet_radius;
+    height: 2 * $bullet_radius;
+    border-radius: $bullet_radius + 1;
+    background-color: black;
+    border: 1px white solid;
+    z-index: 1;
+
+    &:hover {
+        top: -$bullet_radius - 1;
+        left: -$bullet_radius - 1;
+        width: 2 * $bullet_radius + 2;
+        height: 2 * $bullet_radius + 2;
+        border-radius: $bullet_radius + 2;
+
+        cursor: grab;
+    }
+    &:active {
+        cursor: grabbing;
+    }
+}
