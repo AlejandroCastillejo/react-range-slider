@@ -6,12 +6,13 @@
     "scripts": {
         "start": "webpack serve --config ./webpack.config.js --mode development --port 8080",
         "build": "webpack --config webpack.config.js --mode production",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "jest --config jest.config.js --env=jsdom"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "axios": "^0.26.1",
         "prop-types": "^15.8.1",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
@@ -19,18 +20,34 @@
         "react-router-dom": "^6.2.2"
     },
     "devDependencies": {
+        "@babel/cli": "^7.17.6",
         "@babel/core": "^7.17.5",
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-react": "^7.16.7",
+        "@testing-library/dom": "^8.11.3",
+        "@testing-library/jest-dom": "^5.16.2",
+        "@testing-library/react": "^12.1.4",
+        "babel-jest": "^27.5.1",
         "babel-loader": "^8.2.3",
+        "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+        "babel-preset-es2016": "^6.24.1",
         "css-loader": "^6.7.1",
         "file-loader": "^6.2.0",
         "html-webpack-plugin": "^5.5.0",
+        "identity-obj-proxy": "^3.0.0",
+        "jest": "^27.5.1",
+        "react-test-render": "^1.1.2",
         "sass": "^1.49.9",
         "sass-loader": "^12.6.0",
         "style-loader": "^3.3.1",
         "webpack": "^5.70.0",
         "webpack-cli": "^4.9.2",
         "webpack-dev-server": "^4.7.4"
+    },
+    "jest": {
+        "moduleNameMapper": {
+            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+            "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+        }
     }
 }
