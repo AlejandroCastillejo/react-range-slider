@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { range } from '../../utils/utils';
 
@@ -71,31 +71,34 @@ const Range = ({ rangeValues, min, max, step, unit, decimals }) => {
 
 Range.defaultProps = {
     rangeValues: null,
-    min: 1,
-    max: 20,
     step: 1,
     unit: '',
     decimals: 2,
 };
 
 Range.propTypes = {
-    rangeValues: PropTypes.arrayOf(number),
+    rangeValues: PropTypes.arrayOf(PropTypes.number),
 
+    // 'min' and 'max' props are requiered if not 'rangeValue' is passed,
+    // otherwise they will be ignored
     min: (props, propName) => {
         if (!props.rangeValues && typeof props[propName] !== 'number')
-            return new Error(`${propName} prop must be a number`);
+            return new Error(`${propName} prop of type number is required`);
     },
     max: (props, propName) => {
         if (!props.rangeValues && typeof props[propName] !== 'number')
-            return new Error(`${propName} prop must be a number`);
-    },
-    step: (props, propName) => {
-        if (!props.rangeValues && typeof props[propName] !== 'number')
-            return new Error(`${propName} prop must be a number`);
+            return new Error(`${propName} prop of type number is required`);
     },
 
-    unit: PropTypes.string.isRequired,
-    decimals: PropTypes.number.isRequired,
+    // 'step' prop is not requiered as it has a default value set.
+    // If 'rangeValues' is passed, this prop will be ignored
+    step: (props, propName) => {
+        if (!props.rangeValues && typeof props[propName] !== 'number')
+            return new Error(`${propName} prop of type number is required`);
+    },
+
+    unit: PropTypes.string,
+    decimals: PropTypes.number,
 };
 
 export default Range;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './NumberInput.scss';
 
@@ -24,6 +25,19 @@ const NumberInput = ({ value, setValue, range, disabled, unit }) => {
             <p className="NumberInput__unit">{unit}</p>
         </div>
     );
+};
+
+NumberInput.defaultProps = {
+    disabled: false,
+    unit: '',
+};
+
+NumberInput.propTypes = {
+    value: PropTypes.number.isRequired,
+    setValue: PropTypes.func.isRequired,
+    range: PropTypes.arrayOf(PropTypes.number).isRequired,
+    disabled: PropTypes.bool,
+    unit: PropTypes.string,
 };
 
 export default NumberInput;

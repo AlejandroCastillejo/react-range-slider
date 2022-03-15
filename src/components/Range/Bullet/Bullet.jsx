@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 
 import { closestValue } from '../../../utils/utils';
@@ -30,5 +31,13 @@ function Bullet({ values, value, setValue, range, trackRatio }) {
         </div>
     );
 }
+
+Bullet.propTypes = {
+    values: PropTypes.arrayOf(PropTypes.number).isRequired,
+    value: PropTypes.number.isRequired,
+    setValue: PropTypes.func.isRequired,
+    range: PropTypes.arrayOf(PropTypes.number).isRequired,
+    trackRatio: PropTypes.number.isRequired,
+};
 
 export default Bullet;

@@ -5,7 +5,6 @@ $bullet_radius: 8px;
     position: relative;
     height: 100px;
     width: 500px;
-    // background-color: antiquewhite;
     box-shadow: 1px 1px 2px;
     border-radius: 2px;
     display: grid;
@@ -14,19 +13,10 @@ $bullet_radius: 8px;
     justify-content: center;
     align-items: center;
 
-    &__input {
-        width: 50px;
-        margin-left: 15px;
-        text-align: center;
-        border: none;
-    }
-
     &__slider {
         position: relative;
         top: 0;
         width: $track_length;
-        // height: 0;
-        // border: 1px solid black;
         display: grid;
         grid-auto-flow: column;
         justify-content: start;
@@ -34,29 +24,9 @@ $bullet_radius: 8px;
     }
 
     &__line {
-        // position: absolute;
         left: $bullet_radius;
         width: $track_length;
         height: 0;
         border: 1px solid black;
-        // z-index: 1;
-    }
-
-    &__bullet {
-        position: absolute;
-        top: -$bullet_radius;
-        left: -$bullet_radius;
-        width: 2 * $bullet_radius;
-        height: 2 * $bullet_radius;
-        border-radius: $bullet_radius;
-        background-color: black;
-        z-index: 2;
-        // &.min_value {
-        //     background-color: red;
-        //     transform: translateX(-$bullet_radius);
-        // }
-        &.max_value {
-            transform: translateX(calc($track_length));
-        }
     }
 }
