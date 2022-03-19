@@ -1,16 +1,18 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { range } from '../../utils/utils';
+import { TRACK_LENGTH } from '../../constants/rangeParams';
 
 import NumberInput from './NumberInput';
 import Bullet from './Bullet';
 
 import './Range.scss';
 
-const TRACK_LENGTH = 300;
-
 const Range = ({ rangeValues, min, max, step, unit, decimals }) => {
+    const minBulletRef = useRef();
+    const maxBulletRef = useRef();
+
     const [minVal, setMinVal] = useState(!!rangeValues ? rangeValues[0] : min);
     const [maxVal, setMaxVal] = useState(
         !!rangeValues ? rangeValues[rangeValues.length - 1] : max
@@ -24,20 +26,33 @@ const Range = ({ rangeValues, min, max, step, unit, decimals }) => {
         () => TRACK_LENGTH / (values[values.length - 1] - values[0]),
         []
     );
+    const updateMinBullet = (value) => {
+        minBulletRef.current.updatePosition(value);
+        console.log('updateMinBullet');
+    };
+    const updateMaxBullet = (value) => {
+        maxBulletRef.current.updatePosition(value);
+        console.log('updateMaxBullet');
+    };
 
     return (
-        <div className="Range">
+        <div className="Range" data-testid="range-container">
             <NumberInput
+                id="min-val"
                 value={minVal}
                 setValue={setMinVal}
                 range={[values[0], values[values.indexOf(maxVal) - 1]]}
                 disabled={!!rangeValues}
                 unit={unit}
+                updateBulletPosition={updateMinBullet}
             />
 
             <div className="Range__slider">
                 <div className="Range__line"></div>
                 <Bullet
+                    id="min-bullet"
+                    ref={minBulletRef}
+                    type="min"
                     values={values}
                     value={minVal}
                     setValue={setMinVal}
@@ -45,6 +60,9 @@ const Range = ({ rangeValues, min, max, step, unit, decimals }) => {
                     trackRatio={trackRatio}
                 />
                 <Bullet
+                    id="max-bullet"
+                    ref={maxBulletRef}
+                    type="max"
                     values={values}
                     value={maxVal}
                     setValue={setMaxVal}
@@ -56,6 +74,7 @@ const Range = ({ rangeValues, min, max, step, unit, decimals }) => {
                 />
             </div>
             <NumberInput
+                id="max-val"
                 value={maxVal}
                 setValue={setMaxVal}
                 range={[
@@ -64,6 +83,7 @@ const Range = ({ rangeValues, min, max, step, unit, decimals }) => {
                 ]}
                 disabled={!!rangeValues}
                 unit={unit}
+                updateBulletPosition={updateMaxBullet}
             />
         </div>
     );
