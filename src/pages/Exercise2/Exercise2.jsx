@@ -3,6 +3,8 @@ import Range from '../../components/Range';
 
 import exerciseService from '../../services/range-slider-server/exercises.service';
 
+import './Exercise2.scss';
+
 const Exercise2 = () => {
     const [exerciseData, setExerciseData] = useState(undefined);
 
@@ -17,8 +19,8 @@ const Exercise2 = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Exercise 2</h2>
+        <div className="Exercise2">
+            <h2 className="title">Exercise 2</h2>
             {exerciseData ? (
                 <Range
                     rangeValues={exerciseData.rangeValues || null}
