@@ -9,7 +9,7 @@ const Exercise1 = () => {
     const updateExerciseData = () => {
         exerciseService
             .getExerciseData('exercise1')
-            .then((res) => setExerciseData(res.data));
+            .then((resp) => setExerciseData(resp.data));
     };
 
     useEffect(() => {
@@ -23,9 +23,7 @@ const Exercise1 = () => {
                 <Range
                     rangeValues={exerciseData.rangeValues || null}
                     min={exerciseData.min || null}
-                    // min={10}
                     max={exerciseData.max || null}
-                    // max={100}
                     unit="€"
                 />
             ) : null}

@@ -6,15 +6,19 @@ import exerciseService from '../../services/range-slider-server/exercises.servic
 const Exercise2 = () => {
     const [exerciseData, setExerciseData] = useState(undefined);
 
-    useEffect(() => {
+    const updateExerciseData = () => {
         exerciseService
             .getExerciseData('exercise2')
-            .then((res) => setExerciseData(res.data));
+            .then((resp) => setExerciseData(resp.data));
+    };
+
+    useEffect(() => {
+        updateExerciseData();
     }, []);
 
     return (
         <div>
-            <h2>Exercise2</h2>
+            <h2>Exercise 2</h2>
             {exerciseData ? (
                 <Range
                     rangeValues={exerciseData.rangeValues || null}

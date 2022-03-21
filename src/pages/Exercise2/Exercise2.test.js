@@ -3,7 +3,7 @@ import { screen, render, cleanup } from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import Exercise1 from './Exercise1';
+import Exercise2 from './Exercise2';
 
 import { TRACK_LENGTH } from '../../constants/rangeParams';
 
@@ -11,21 +11,20 @@ const { getByText, getByTestId } = screen;
 
 const mockAxios = new MockAdapter(axios);
 const mockResponse = {
-    min: 1,
-    max: 100,
+    rangeValues: [1.99, 5.99, 10.99, 30.99, 50.99, 70.99],
 };
 mockAxios
-    .onGet('http://demo8008593.mockable.io/range-slider-project/exercise1')
+    .onGet('http://demo8008593.mockable.io/range-slider-project/exercise2')
     .reply(200, mockResponse);
 
-describe('Exercise 1', () => {
+describe('Exercise 2', () => {
     beforeEach(() => {
-        render(<Exercise1 />);
+        render(<Exercise2 />);
     });
     afterEach(cleanup);
 
     it('should render the header', () => {
-        const title = 'Exercise 1';
+        const title = 'Exercise 2';
         expect(getByText(title)).toBeInTheDocument();
     });
 
@@ -34,14 +33,14 @@ describe('Exercise 1', () => {
         expect(rangeContainer).toBeInTheDocument();
     });
 
-    it('should have min value in min-input', () => {
+    it("min value should be the first element of the array 'rangeValues'", () => {
         const minValInput = getByTestId('min-val-input');
-        expect(minValInput.value).toBe('1');
+        expect(minValInput.value).toBe('1.99');
     });
 
-    it('should have max value in max-input', () => {
+    it("max value should be the last element of the array 'rangeValues'", () => {
         const maxValInput = getByTestId('max-val-input');
-        expect(maxValInput.value).toBe('100');
+        expect(maxValInput.value).toBe('70.99');
     });
 
     it('min-bullet should be at the begining of the slider track', () => {
