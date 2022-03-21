@@ -28,11 +28,9 @@ const Range = ({ rangeValues, min, max, step, unit, decimals }) => {
     );
     const updateMinBullet = (value) => {
         minBulletRef.current.updatePosition(value);
-        console.log('updateMinBullet');
     };
     const updateMaxBullet = (value) => {
         maxBulletRef.current.updatePosition(value);
-        console.log('updateMaxBullet');
     };
 
     return (
