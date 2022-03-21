@@ -21,14 +21,8 @@ const Bullet = forwardRef((props, ref) => {
     }));
 
     const handleDrag = (e, ui) => {
-        console.log('value', value);
-        console.log('range[0]', range[0]);
-        console.log('range[1]', range[1]);
         setValue(closestValue(values, values[0] + deltaPositionX / trackRatio));
         setDeltaPositionX(deltaPositionX + ui.deltaX);
-
-        console.log(value);
-        console.log(deltaPositionX / trackRatio);
     };
 
     const handleStop = (e) => {
@@ -55,12 +49,7 @@ const Bullet = forwardRef((props, ref) => {
                 onDrag={handleDrag}
                 onStop={handleStop}
             >
-                <div data-testid={id} className="Bullet">
-                    <div>
-                        x: {deltaPositionX.toFixed(0) / trackRatio}, y:
-                        {0}
-                    </div>
-                </div>
+                <div data-testid={id} className="Bullet"></div>
             </Draggable>
         </div>
     );
