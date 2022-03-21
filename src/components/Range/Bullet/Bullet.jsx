@@ -34,13 +34,10 @@ const Bullet = forwardRef((props, ref) => {
     const handleStop = (e) => {
         let inRangeValue = value;
 
-        // if (value < range[0]) setValue(range[0]);
         if (value < range[0]) inRangeValue = range[0];
-        // else if (e.layerX / trackRatio > range[1]) setValue(range[1]);
         else if (e.layerX / trackRatio > range[1]) inRangeValue = range[1];
 
         setValue(inRangeValue);
-        // setDeltaPositionX((value - values[0]) * trackRatio);
         setDeltaPositionX((inRangeValue - values[0]) * trackRatio);
     };
 
@@ -54,7 +51,6 @@ const Bullet = forwardRef((props, ref) => {
                     left: 0,
                     right: TRACK_LENGTH,
                 }}
-                // position={{ x: value * trackRatio - BULLET_RADIUS, y: 0 }}
                 position={{ x: deltaPositionX, y: 0 }}
                 onDrag={handleDrag}
                 onStop={handleStop}
