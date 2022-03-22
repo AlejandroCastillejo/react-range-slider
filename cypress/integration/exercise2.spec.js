@@ -26,10 +26,20 @@ describe('Test Exercise 2', () => {
                 .trigger('mousemove', { clientX: 300 })
                 .click();
 
+            // assertions
+            cy.get('[data-testid=min-val-input]')
+                .invoke('val')
+                .then(Number)
+                .should('greaterThan', 1);
+            cy.get('[data-testid=max-val-input]')
+                .invoke('val')
+                .then(Number)
+                .should('lessThan', 100);
+
             cy.wait(2000);
         });
 
-        it('min and max bullets should not cross in range', () => {
+        it.only('min and max bullets should not cross in range', () => {
             cy.get('[data-testid=min-bullet]')
                 .trigger('mouseover')
                 .trigger('mousedown', { which: 1 })

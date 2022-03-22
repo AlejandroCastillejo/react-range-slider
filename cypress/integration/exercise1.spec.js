@@ -27,6 +27,15 @@ describe('Test Exercise 1', () => {
 
             cy.get('[data-testid=range-container]').click();
 
+            // assertions
+            cy.get('[data-testid=min-val-input]')
+                .invoke('val')
+                .then(Number)
+                .should('equal', 12);
+            cy.get('[data-testid=max-val-input]')
+                .invoke('val')
+                .then(Number)
+                .should('equal', 18);
             cy.wait(2000);
         });
 
@@ -65,6 +74,17 @@ describe('Test Exercise 1', () => {
 
             cy.get('[data-testid=max-val-input]').type('{enter}');
 
+            // assertions
+            cy.get('[data-testid=min-val-input]')
+                .invoke('val')
+                .then(Number)
+                .should('equal', 25);
+            cy.get('[data-testid=max-val-input]')
+                .invoke('val')
+                .then(Number)
+                .should('greaterThan', 25);
+            cy.wait(2000);
+
             cy.wait(2000);
         });
 
@@ -84,6 +104,15 @@ describe('Test Exercise 1', () => {
                 .trigger('mousemove', { clientX: 300 })
                 .click();
 
+            // assertions
+            cy.get('[data-testid=min-val-input]')
+                .invoke('val')
+                .then(Number)
+                .should('greaterThan', 1);
+            cy.get('[data-testid=max-val-input]')
+                .invoke('val')
+                .then(Number)
+                .should('lessThan', 100);
             cy.wait(2000);
         });
 
